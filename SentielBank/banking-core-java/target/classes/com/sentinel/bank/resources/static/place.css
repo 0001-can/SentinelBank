@@ -1,0 +1,147 @@
+/* --- style.css --- */
+
+/* Renk Paleti (Cyberpunk Tema) */
+:root {
+    --bg-color: #0a0a0a;         /* Simsiyah Zemin */
+    --card-bg: #161616;          /* Kart Rengi */
+    --primary-red: #ff0f0f;      /* Neon Kırmızı */
+    --dark-red: #8a0000;         /* Koyu Kırmızı */
+    --text-color: #e0e0e0;       /* Beyazımsı Gri */
+    --border-color: #333;        /* İnce Çerçeveler */
+    --safe-green: #00ff88;       /* Güvenli İşlem Yeşili */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* --- YENİ ARKA PLAN --- */
+    background-color: var(--bg-color); /* Yedek renk */
+    /* Burada 3 katmanlı bir arka plan oluşturuyoruz:
+       1. Katman: Yazıların okunması için koyu yarı saydam bir perde (%90 siyah).
+       2. Katman: Çok silik dikey kırmızı çizgiler.
+       3. Katman: Çok silik yatay kırmızı çizgiler.
+    */
+    background-image:
+            linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)),
+            linear-gradient(90deg, rgba(255, 15, 15, 0.05) 1px, transparent 1px),
+            linear-gradient(rgba(255, 15, 15, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px; /* Karelerin boyutu 40px */
+    background-attachment: fixed; /* Sayfa kaydırılsa da arka plan sabit kalsın */
+    /* ----------------------- */
+
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    margin-top: 30px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 0 0 10px var(--primary-red);
+}
+
+p {
+    color: #888;
+    font-size: 1.1rem;
+}
+
+strong {
+    color: white;
+}
+
+/* Harita Tasarımı */
+#map {
+    height: 500px;
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9); /* Gölgeyi biraz daha derinleştirdim */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Haritayı "Karanlık Mod"a çeviren filtre */
+    filter: invert(90%) hue-rotate(180deg) contrast(90%);
+    background: #111; /* Harita yüklenirken arka planı */
+}
+
+#map:hover {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 35px rgba(255, 15, 15, 0.3);
+}
+
+/* Buton Tasarımı */
+.btn {
+    background: linear-gradient(145deg, var(--dark-red), #500000);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid var(--primary-red);
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 15, 15, 0.2);
+    outline: none;
+    backdrop-filter: blur(5px); /* Butonun arkasını hafif bulanıklaştırır */
+}
+
+.btn:hover {
+    background: var(--primary-red);
+    box-shadow: 0 0 40px var(--primary-red);
+    transform: scale(1.05);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Durum Kutusu */
+#status {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(22, 22, 22, 0.95); /* Yarı saydam yaptık */
+    width: 60%;
+    text-align: center;
+    font-size: 1.3rem;
+    border-left: 5px solid var(--border-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px); /* Kutunun arkasını hafif bulanıklaştırır */
+}
+
+/* Durum Renkleri */
+.safe {
+    border-left-color: var(--safe-green) !important;
+    color: var(--safe-green);
+    background-color: rgba(0, 255, 136, 0.08);
+}
+
+.fraud {
+    border-left-color: var(--primary-red) !important;
+    color: var(--primary-red);
+    background-color: rgba(255, 15, 15, 0.15);
+    font-weight: bold;
+    animation: blink-red 1s infinite;
+}
+
+@keyframes blink-red {
+    0% { opacity: 1; text-shadow: 0 0 10px var(--primary-red); }
+    50% { opacity: 0.6; text-shadow: none; }
+    100% { opacity: 1; text-shadow: 0 0 10px var(--primary-red); }
+}
+
+/* Harita Popup Stili */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #222;
+    color: white;
+    border: 1px solid var(--primary-red);
+}
