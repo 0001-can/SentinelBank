@@ -10,7 +10,6 @@ def predict_risk():
     amount = data.get('amount')
     location = data.get('location')
     
-    # Basit bir Kural Tabanlı Yapay Zeka Simülasyonu
     risk_score = 0
     
     # Eğer işlem miktarı 10.000 TL üzerindeyse risk artar
