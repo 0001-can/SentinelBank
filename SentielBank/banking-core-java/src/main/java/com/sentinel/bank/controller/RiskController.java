@@ -63,9 +63,9 @@ public class RiskController {
         String toCity = newLoc.getCityName();
         
         if (isFraud) {
-            response.put("message", "🚨 ALARM! " + fromCity + " -> " + toCity + " çok uzak!");
+            response.put("message", " ALARM! " + fromCity + " -> " + toCity + " çok uzak!");
         } else {
-            response.put("message", "✅ " + toCity + "'e ulaşıldı.");
+            response.put("message", " " + toCity + "'e ulaşıldı.");
         }
 
         // Senaryo gereği her türlü ilerletiyoruz
